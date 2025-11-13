@@ -1,5 +1,3 @@
-import React from 'react'
-
 const menuItems = [
   { key: 'Dashboard', label: 'Dashboard', icon: 'dashboard' },
   { key: 'Employees', label: 'Employees', icon: 'users' },

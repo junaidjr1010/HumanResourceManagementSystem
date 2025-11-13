@@ -16,7 +16,7 @@ import React from 'react'
 
 function EmployeesStatistics(){
   const maxValue = Math.max(...data.map(item => item.value));
-  const containerHeight = 115;
+  const containerHeight = 130;
  
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg w-full">

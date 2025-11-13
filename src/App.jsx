@@ -3,6 +3,7 @@ import './App.css'
 import Sidebar from './components/Sidebar'
 import EmployeesStatistics from './Dashboard/EmployeesStatistics'
 import StatsCards from './components/StatsCard'
+import EmpComposition from './components/Emp_Composition/emp_comp'
 
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
       <StatsCards/>
       <div className="mt-2">
         <EmployeesStatistics/>
+      </div>
+      <div className="mt-2 ml-auto w-fit">
+        <EmpComposition/>
       </div>
     </div>
     </>
