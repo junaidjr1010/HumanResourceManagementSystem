@@ -15,15 +15,16 @@ import React from 'react'
   ];
 
 function EmployeesStatistics(){
+  const maxValue = Math.max(...data.map(item => item.value));
+  const containerHeight = 115;
  
   return (
-    <div className="bg-blue-50 border border-gray-200 mx-10  p-6 rounded-xl shadow-xl max-w-6/7 ml-50
-     ">
-      <h2 className=" text-lg font-semibold mb-6 text-blue-600">
+    <div className="bg-white p-6 rounded-xl shadow-lg w-full">
+      <h2 className="text-lg font-semibold mb-6 text-blue-600">
         Employee statistics of company
       </h2>
 
-      <div className="flex items-end justify-between h-64 px-5 mt-15 max-w-4/5 mx-auto ">
+      <div className="flex items-end justify-between px-5 mx-auto" style={{ height: `${containerHeight}px` }}>
         {data.map((item, index) => (
           <div key={index} className="flex flex-col items-center gap-1">
             
@@ -33,7 +34,7 @@ function EmployeesStatistics(){
               className="w-10 rounded-md  hover:scale-101 shadow-2xl hover:shadow-gray-700 duration-700
                cursor-pointer "
               style={{
-                height: `${item.value}px`,
+                height: `${(item.value / maxValue) * containerHeight}px`,
                 backgroundColor: item.color
               }}
             ></div>

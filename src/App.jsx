@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './components/Sidebar'
+import EmployeesStatistics from './Dashboard/EmployeesStatistics'
+import StatsCards from './components/StatsCard'
 
 
 function App() {
@@ -11,6 +11,13 @@ function App() {
   return (
     <>
     <Sidebar/>
+    <div className="ml-48 p-8">
+      <h1 className="text-xl font-bold text-blue-800 mb-6">Dashboard</h1>
+      <StatsCards/>
+      <div className="mt-2">
+        <EmployeesStatistics/>
+      </div>
+    </div>
     </>
   )
 }
