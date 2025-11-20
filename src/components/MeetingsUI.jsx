@@ -9,7 +9,8 @@ const meetings = [
     date: 10,
     title: "Interview",
     time: "From 9:30 AM to 11:20 AM",
-    color: "from-blue-300 to-blue-500",
+    badgeBg: "bg-red-100",
+    badgeText: "text-red-700",
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ const meetings = [
     date: 11,
     title: "Organizational Meeting",
     time: "From 9:30 AM to 11:20 AM",
-    color: "from-purple-300 to-purple-500",
+    badgeBg: "bg-orange-100",
+    badgeText: "text-orange-700",
   },
   {
     id: 3,
@@ -25,77 +27,69 @@ const meetings = [
     date: 12,
     title: "Meeting with the HR",
     time: "From 9:30 AM to 11:20 AM",
-    color: "from-green-300 to-green-500",
+    badgeBg: "bg-green-100",
+    badgeText: "text-green-700",
   },
 ];
 
 export default function MeetingsUI() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 flex items-center justify-center p-6">
+    <div className="w-full max-w-sm md:max-w-md">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+        transition={{ duration: 0.35 }}
+        className="bg-[#eef7fb] border border-[#bfe7ff] rounded-xl shadow-md p-3"
       >
-        <div className="bg-white/60 backdrop-blur-md border border-white/40 rounded-2xl shadow-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="text-2xl font-semibold text-gray-800">Meetings</h2>
-              <p className="text-sm text-gray-500 mt-1">Upcoming schedule — stay prepared</p>
-            </div>
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-lg font-semibold text-[#2b4a72]">Meetings</h2>
+          </div>
+          <div className="flex items-center gap-2">
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-white/50 shadow-sm hover:scale-105 transition-transform"
+              className="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-white border border-gray-200 shadow-sm text-xs"
               aria-label="Open calendar"
             >
               <Calendar size={16} />
-              <span className="text-sm font-medium text-gray-700">Calendar</span>
-            </button>
-          </div>
-
-          <div className="space-y-4">
-            {meetings.map((m, idx) => (
-              <motion.div
-                key={m.id}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.05 * idx }}
-                className="flex items-center gap-4 bg-white/70 rounded-lg p-3 border border-white/30 shadow-sm hover:shadow-md hover:scale-[1.01] transition-transform"
-              >
-                <div className="flex-shrink-0">
-                  <div
-                    className={`w-14 h-14 rounded-lg flex flex-col items-center justify-center text-center text-white shadow-inner bg-gradient-to-br ${m.color}`}
-                    aria-hidden="true"
-                  >
-                    <span className="text-xs font-medium opacity-90">{m.dayShort}</span>
-                    <span className="text-lg font-semibold mt-0.5">{m.date}</span>
-                  </div>
-                </div>
-
-                <div className="flex-1">
-                  <div className="flex items-start justify-between">
-                    <h3 className="text-gray-800 font-semibold">{m.title}</h3>
-                    <div className="text-xs text-gray-400 flex items-center gap-1">
-                      <Clock size={14} />
-                      <span>{/* small empty spacer for alignment */}</span>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-500 mt-1">{m.time}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-6 flex items-center justify-between">
-            <div className="text-xs text-gray-500">Last synced 10 minutes ago</div>
-            <button className="text-sm font-medium px-4 py-2 rounded-md bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow hover:brightness-95 transition">
-              Sync now
+              <span className="text-xs font-medium text-gray-700">Calendar</span>
             </button>
           </div>
         </div>
 
-        <div className="mt-6 text-center text-xs text-gray-400">
-          Tip: Hover a meeting to see subtle elevation and action hints.
+        <div className="grid grid-cols-1 gap-2">
+          {meetings.map((m, idx) => (
+            <motion.div
+              key={m.id}
+              initial={{ opacity: 0, x: 6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.04 * idx }}
+              className="flex items-center gap-3 bg-white rounded-lg p-2 border border-gray-100 shadow-sm"
+            >
+              <div className="flex-shrink-0">
+                <div className={`w-10 h-10 rounded-md flex flex-col items-center justify-center text-center ${m.badgeBg} ${m.badgeText} font-semibold shadow-sm border border-white`}>
+                  <span className="text-[10px]">{m.dayShort}</span>
+                  <span className="text-base mt-0.5">{m.date}</span>
+                </div>
+              </div>
+
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-gray-800 font-medium text-sm">{m.title}</h3>
+                  <div className="text-xs text-gray-400 flex items-center gap-1">
+                    <Clock size={12} />
+                    <span className="text-xs text-gray-500">{m.time}</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-4 flex items-center justify-between">
+          <div className="text-xs text-gray-500">Last synced 10 minutes ago</div>
+          <button className="text-xs font-medium px-3 py-1 rounded-md bg-white border border-gray-200 shadow-sm">
+            Sync
+          </button>
         </div>
       </motion.div>
     </div>
